@@ -1,0 +1,1 @@
+SELECT `id`, `title`, locate('The', `title` COLLATE utf8mb4_0900_as_ci) AS 'Index of The' FROM `books`;
