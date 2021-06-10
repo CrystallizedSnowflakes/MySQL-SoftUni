@@ -17,6 +17,7 @@ FROM
 ORDER BY first_name , last_name
 LIMIT 5;
 
+-- ----------------------------------------------------------
 
 SELECT 
     e.first_name, e.last_name, t.name AS town, a.address_text

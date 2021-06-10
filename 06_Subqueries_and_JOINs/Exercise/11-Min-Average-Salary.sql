@@ -11,6 +11,7 @@ GROUP BY d.department_id
 ORDER BY `min_average_salary`
 LIMIT 1;
 
+-- -------------------------------------------------------
 
 SELECT 
     AVG(e.salary) AS 'min_average_salary'
