@@ -14,10 +14,10 @@ BEGIN
 			ON c.id = tc.colonist_id 
 			JOIN journeys AS j
 			ON tc.journey_id = j.id
-            JOIN spaceports AS s
-            ON j.destination_spaceport_id = s.id
-            JOIN planets AS p
-            ON s.planet_id = p.id
+            		JOIN spaceports AS s
+            		ON j.destination_spaceport_id = s.id
+            		JOIN planets AS p
+           		 ON s.planet_id = p.id
 			WHERE p.name = planet_name);
             
 	RETURN colonists_count;
