@@ -1,7 +1,7 @@
 CREATE TABLE `teachers`(
 	`teacher_id` INT PRIMARY KEY AUTO_INCREMENT,
 	`name` VARCHAR(20) NOT NULL,	
-    `manager_id` INT NULL
+    	`manager_id` INT NULL
 );
 -- insert before creating constraint
 INSERT INTO `teachers` VALUES
