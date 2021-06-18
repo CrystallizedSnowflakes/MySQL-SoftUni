@@ -7,15 +7,16 @@ DROP PROCEDURE IF EXISTS udp_update_product_price;
 DELIMITER //
 CREATE PROCEDURE udp_update_product_price (address_name VARCHAR (50))
 BEGIN
-	DECLARE increase_level INT;
-    IF address_name LIKE '0%' THEN SET increase_level = 100;
-    ELSE SET increase_level = 200;
-    END IF;
+    	DECLARE increase_level INT;
     
-	UPDATE products AS p
-    SET price = price + increase_level
-    WHERE p.id IN (SELECT ps.product_id FROM addresses AS a
-					JOIN stores AS s ON a.id = s.address_id
+    	IF address_name LIKE '0%' THEN SET increase_level = 100;
+    	ELSE SET increase_level = 200;
+	    END IF;
+    
+    	UPDATE products AS p
+    	SET price = price + increase_level
+    	WHERE p.id IN (SELECT ps.product_id FROM addresses AS a
+		    JOIN stores AS s ON a.id = s.address_id
                     JOIN products_stores AS ps ON ps.store_id = s.id
                     WHERE a.name = address_name
                     );
@@ -28,7 +29,7 @@ DELIMITER //
 CREATE PROCEDURE udp_update_product_price (address_name VARCHAR (50))
 BEGIN  
 	DECLARE increase_level INT;
-    CASE LEFT(address_name, 1)
+    	CASE LEFT(address_name, 1)
 		WHEN '0' THEN SET increase_level := 100;
 		ELSE SET increase_level := 200;
 	END CASE;
@@ -58,10 +59,10 @@ BEGIN
 	JOIN addresses AS a
 		ON a.id = s.address_id
 	SET price = (
-		CASE LEFT(address_name, 1)
-			WHEN '0' THEN price + 100
-			ELSE price + 200
-		END)
+	    CASE LEFT(address_name, 1)
+		WHEN '0' THEN price + 100
+		ELSE price + 200
+	    END)
 	WHERE a.name = address_name;
 END //
 DELIMITER ;
