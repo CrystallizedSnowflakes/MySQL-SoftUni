@@ -4,10 +4,10 @@
 
 UPDATE employees_clients as ec
 JOIN
-(SELECT ec2.employee_id, COUNT(ec2.client_id) AS 'clients_count'
-		FROM employees_clients as ec2 
-		GROUP BY ec2.employee_id
-		ORDER BY clients_count, ec2.employee_id
+    	(SELECT ec2.employee_id, COUNT(ec2.client_id) AS 'clients_count'
+	FROM employees_clients as ec2 
+	GROUP BY ec2.employee_id
+	ORDER BY clients_count, ec2.employee_id
         LIMIT 1) AS tbl
 SET ec.employee_id = tbl.employee_id
 WHERE ec.employee_id = ec.client_id;
