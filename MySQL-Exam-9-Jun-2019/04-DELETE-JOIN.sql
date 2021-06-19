@@ -14,3 +14,13 @@ DELETE e FROM employees AS e
 LEFT JOIN employees_clients AS ec 
 ON e.id = ec.employee_id
 WHERE ec.employee_id IS NULL; 
+
+-- -----------------------------------------
+DELETE FROM employees WHERE id = 
+(
+	SELECT emp.id FROM ( SELECT * FROM employees) AS emp
+	LEFT JOIN employees_clients AS ec 
+	ON emp.id = ec.employee_id
+	WHERE ec.client_id IS NULL
+    LIMIT 1
+); 
